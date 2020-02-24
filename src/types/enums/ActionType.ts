@@ -1,3 +1,4 @@
 export enum ActionType {
-  FETCH_TODOS
+  FETCH_TODOS,
+  DELETE_TODO
 }
