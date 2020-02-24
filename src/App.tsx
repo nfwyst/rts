@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Todo, StoreState } from './types/interfaces'
+import { fetchTodos } from './actions'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class _App extends React.Component<{ todos: Todo[], fetchTodos(): any }> {
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.fetchTodos}>发起请求</button>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = ({ todos }: StoreState): StoreState => {
+  return { todos }
+}
+
+export default connect(mapStateToProps, { fetchTodos })(_App)
